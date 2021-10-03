@@ -11,7 +11,7 @@ int main()
 {
     cout << "\nEMPLOYEE DATABASE";
     int database_size;
-    cout << "\nENTER THE DATABASE\n>>> ";
+    cout << "\nENTER THE DATABASE SIZE\n>>> ";
     cin >> database_size;
     database db(database_size);
     cout << "\nDATABASE CREATED SUCESSFULLY\n";
@@ -32,7 +32,7 @@ int main()
             cout << "\nENTER THE ID\n>>> ";
             int id;
             cin >> id;
-            int loc = db.getElementIndexByID(1);
+            int loc = db.getElementIndexByID(id);
             if (loc != -1)
             {
                 Employee temp = db.getEmployeeByID(loc);
