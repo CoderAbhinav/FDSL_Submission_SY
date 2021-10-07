@@ -81,8 +81,8 @@ Operations Operations::simpleTranspose(){
     temp.val_count = this->val_count;
     temp.sparseMatrix = new SparseMatrix[this->sparseMatrix[0].val+1];
     int vals, pos = 1;
-    temp.sparseMatrix[0].row = this->sparseMatrix->row;
-    temp.sparseMatrix[0].col = this->sparseMatrix->col;
+    temp.sparseMatrix[0].row = this->sparseMatrix->col;
+    temp.sparseMatrix[0].col = this->sparseMatrix->row;
     temp.sparseMatrix[0].val = this->sparseMatrix->val;
     vals = this->sparseMatrix[0].val;
 
@@ -102,5 +102,13 @@ Operations Operations::simpleTranspose(){
 }
 
 Operations fastTranspose(){
+    
+    int i, j, num_cols = this->sparseMatrix[0].col, num_terms = this->sparseMatrix[0].val;
+    int row_terms[num_cols], starting_pos[num_cols];
+    Operations temp(this->row_count, this->col_count);
+    temp.sparseMatrix = new SparseMatrix[this->val_count + 1];
+    temp.sparseMatrix[0].row = this->sparseMatrix[0].col;
+    temp.sparseMatrix[0].col = this->sparseMatrix[0].row;
+    temp.sparseMatrix[0].val = this->sparseMatrix[0].val;
     
 }
