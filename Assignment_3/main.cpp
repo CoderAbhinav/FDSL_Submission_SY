@@ -8,7 +8,7 @@ int main(){
     Operations op(row, col);
     op.takeInputs();
     op.printSparse();
-    Operations temp = op.simpleTranspose();
+    Operations temp = op.fastTranspose();
     temp.printSparse();
     cout<<"DONE INPUTS";
     return 0;

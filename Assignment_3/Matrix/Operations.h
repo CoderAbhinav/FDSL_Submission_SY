@@ -101,14 +101,35 @@ Operations Operations::simpleTranspose(){
     return temp;
 }
 
-Operations fastTranspose(){
+Operations Operations::fastTranspose(){
     
     int i, j, num_cols = this->sparseMatrix[0].col, num_terms = this->sparseMatrix[0].val;
     int row_terms[num_cols], starting_pos[num_cols];
     Operations temp(this->row_count, this->col_count);
+    temp.val_count = this->val_count;
     temp.sparseMatrix = new SparseMatrix[this->val_count + 1];
     temp.sparseMatrix[0].row = this->sparseMatrix[0].col;
     temp.sparseMatrix[0].col = this->sparseMatrix[0].row;
     temp.sparseMatrix[0].val = this->sparseMatrix[0].val;
     
+    if(num_terms > 0){
+        for(int i = 0 ; i < num_terms; i++){
+            row_terms[i] = 0;
+        }
+        for(int i = 1; i <= num_terms; i++){
+            row_terms[this->sparseMatrix[i].col]++;
+        }
+        starting_pos[0] = 1;
+        for(int i = 1; i < num_cols; i++){
+            starting_pos[i] = starting_pos[i-1] + row_terms[i];  
+        }
+        for(int i = 1; i <= num_terms; i++){
+            int j = starting_pos[this->sparseMatrix[i].col]++;
+            temp.sparseMatrix[j].row = this->sparseMatrix[i].col;
+            temp.sparseMatrix[j].col = this->sparseMatrix[i].row;
+            temp.sparseMatrix[j].val = this->sparseMatrix[i].val;
+
+        }
+    }
+    return temp;
 }
