@@ -6,7 +6,7 @@ class NodeList
 {
 private:
     Node *head;       // track head of list
-    Node *end = NULL; // tracks the end of list
+    Node *tail = NULL; // tracks the end of list
     int size;       // trcks the size of list
 
 public:
@@ -21,12 +21,14 @@ public:
     int elementAtStart();
     int elementAtEnd();
     int sizeOfList(); // returns size of list
+
+    int operator[](int); // these are just for getting an int by value
 };
 
 NodeList::NodeList()
 {
     // Worst Case O(1); constant
-    this->head = this->end;
+    this->head = this->tail;
     size = 0;
 }
 
@@ -65,17 +67,17 @@ void NodeList::insertAtEnd(int data)
 {
     // O(1); constant
     size++;          // incrementing size
-    if (end == NULL) // if the list is not initialized or the head == end == NULL
+    if (tail == NULL) // if the list is not initialized or the head == end == NULL
     {
-        end = new Node; // allocating memory
-        head = end;
-        end->data = data;
+        tail = new Node; // allocating memory
+        head = tail;
+        tail->data = data;
     }
     else
     {
-        end->next = new Node; // allocating memory to the next of end
-        end = end->next;
-        end->data = data;
+        tail->next = new Node; // allocating memory to the next of end
+        tail = tail->next;
+        tail->data = data;
     }
 }
 
@@ -116,7 +118,7 @@ void NodeList::insertAt(int index, int data)
     // if the new node added at end then we will update the end pointer
     if (toAdd->next == NULL)
     {
-        end = toAdd;
+        tail = toAdd;
     }
 }
 
@@ -150,7 +152,7 @@ void NodeList::deleteNodeAt(int index)
         // setting the second last node to NULL
         temp->next = NULL;
         // setting the end of list to the second last element so that it can add a new element
-        end = temp;
+        tail = temp;
         return;
     }
     temp->next = temp->next->next;
@@ -190,9 +192,9 @@ int NodeList::elementAtStart()
 int NodeList::elementAtEnd()
 {
     // O(1); constant
-    if (end != NULL)
+    if (tail != NULL)
     { // if list is initialized then
-        return end->data;
+        return tail->data;
     }
     return -1;
 }
@@ -201,4 +203,8 @@ int NodeList::sizeOfList()
 {
     // O(1); constant
     return this->size;
+}
+
+int NodeList::operator[](int i){
+    return this->elementAtIndex(i);
 }
