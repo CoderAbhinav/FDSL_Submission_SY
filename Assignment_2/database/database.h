@@ -31,6 +31,7 @@ database::database(int max_size)
 
 void database::addEmployeeEntry(Employee e)
 {
+    // Complexity O(n)
     /*
     The employee id is dominant for comparisons
     */
@@ -74,6 +75,7 @@ void database::displayDatabse()
 
 int database::getElementIndexByID(int employee_id)
 {
+    // O(log(n))
     return binarySearch(employee_list, 0, elements, employee_id);
 }
 
@@ -85,6 +87,7 @@ Employee database::getEmployeeByID(int index)
 
 void database::deleteEmployeeEntry(int index)
 {
+    // O(log(n) + n)
     if (index == this->elements - 1)
     {
     }
