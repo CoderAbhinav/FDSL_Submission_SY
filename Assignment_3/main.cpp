@@ -5,11 +5,15 @@ using namespace std;
 int main(){
     int row, col;
     cin>>row>>col;
-    Operations op(row, col);
-    op.takeInputs();
+    Operations op(row,col);
+
+
+    op.takeInput();
+    
+
     op.printSparse();
-    Operations temp = op.fastTranspose();
+    cout<<"\n\n";
+    Operations temp = op.simpleTranspose();
     temp.printSparse();
-    cout<<"DONE INPUTS";
     return 0;
 }
