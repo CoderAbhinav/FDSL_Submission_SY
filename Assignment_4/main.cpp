@@ -7,6 +7,7 @@ int main(){
     l.insertAtEnd(10);
     l.insertAtBegin(20);
     l.insertAtEnd(30);
+    l.deleteNodeAt(2);
     l.printList();
     line;
     cout<<l[2];

@@ -125,7 +125,12 @@ void NodeList::insertAt(int index, int data)
 
 void NodeList::deleteNodeAt(int index)
 {
-
+    // checks if the index is not greater than last index
+    if (index >= size)
+    {
+        cout << "\n!!!Index is out of range!!!\n";
+        return;
+    }
     // O(index); linear
     size--;
     Node *temp = this->head;
@@ -164,7 +169,7 @@ int NodeList::elementAtIndex(int index)
 {
 
     // O(index); linear
-    if (index > size)
+    if (index >= size)
     {
         cout << "\n!!!Index Out Of Range!!!\n";
         return -1;
