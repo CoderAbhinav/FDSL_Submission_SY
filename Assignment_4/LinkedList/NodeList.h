@@ -21,8 +21,9 @@ public:
     int elementAtStart();
     int elementAtEnd();
     int sizeOfList(); // returns size of list
-
+    
     int operator[](int); // these are just for getting an int by value
+    int find(int key);
 };
 
 NodeList::NodeList()
@@ -39,12 +40,12 @@ NodeList::~NodeList()
 void NodeList::printList()
 {
     // O(size); linear
-    Node *temp = this->head;
+    Node *temp = this->head; // creating temporary pointer
     while (temp != NULL)
     {
 
-        cout << temp->data << " ";
-        temp = temp->next;
+        cout << temp->data << " "; // printing data
+        temp = temp->next; // traversing
     }
 }
 
@@ -207,4 +208,17 @@ int NodeList::sizeOfList()
 
 int NodeList::operator[](int i){
     return this->elementAtIndex(i);
+}
+
+int NodeList::find(int key){
+    Node* temp = this->head; // creating a temporary pointer
+    int index = 0; // setting an index counter
+    while(temp != NULL){
+        if(temp->data == key){ // checking if key matches to node data
+            return index; // found
+        }
+        temp = temp->next; // traversing
+        index++;
+    }
+    return -1; // not found
 }
