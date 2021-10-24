@@ -116,3 +116,44 @@ Operations Operations::simpleTranspose(){
     return rev;   
 
 }
+
+Operations Operations::fastTranspose(){
+    // creating an object to return the operation
+    Operations rev(this->col_count, this->row_count);
+    // allocating memory
+    rev.sparseMatrix = new SparseMatrix[this->val_count+1]; 
+    // setting the row, col, val count & interchaning row & cols
+    rev.sparseMatrix[0] = createSparseMatrix(this->col_count, this->row_count, this->val_count);
+
+    int row_terms[this->col_count], starting_pos[this->col_count];
+    int i, j, num_cols = this->col_count, num_terms = this->val_count;
+
+    if(num_terms > 0){
+        for (i = 0; i < num_cols; i++)
+        {
+            /* code */
+            row_terms[i] = 0;
+        }
+
+        for(i = 1; i <= num_terms; i++){
+            row_terms[this->sparseMatrix[i].col]++;
+        }
+
+        starting_pos[0] = 1;
+
+        for(i = 1; i < num_cols; i++){
+            starting_pos[i] = starting_pos[i-1] + row_terms[i-1];
+        }
+
+        for(i = 1; i <= num_terms; i++){
+            j = starting_pos[this->sparseMatrix[i].col]++;
+            rev.sparseMatrix[j].row = this->sparseMatrix[i].col;
+            rev.sparseMatrix[j].col = this->sparseMatrix[i].row;
+            rev.sparseMatrix[j].val = this->sparseMatrix[i].val;
+        }
+        
+    }
+
+    rev.matrixCreated = true; // setting the flag to true
+    return rev;     
+}
