@@ -13,7 +13,8 @@
     iii. Search record (binary search) 
     iv. Delete record
 ## [Assignment 3 - Sparse Matrix Operations](/Assignment_3)
-    Accept conventional matrix and convert it into sparse matrix. Implement simple transpose and Fast transpose algorithms on sparse matrix
+    Accept conventional matrix and convert it into sparse matrix. 
+    Implement simple transpose and Fast transpose algorithms on sparse matrix
 ## [Assignment 4 - Linked List](/Assignment_4)
     Create a Singly linked list for employee data and perform 
     a. insertion 
