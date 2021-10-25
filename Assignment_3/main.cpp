@@ -2,7 +2,6 @@
 #include "Matrix/Operations.h"
 using namespace std;
 
-int options();
 
 int main(){
 
