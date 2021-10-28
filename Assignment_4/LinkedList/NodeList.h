@@ -2,6 +2,8 @@
 #include "Node.h"
 using namespace std;
 
+
+
 class NodeList
 {
 private:
@@ -13,16 +15,16 @@ public:
     NodeList();
     ~NodeList();
     void printList(); // prints all list elements space separated
-    void insertAtBegin(int data);
-    void insertAtEnd(int data);
-    void insertAt(int index, int data); // index from 0 to n; inserts at given index
+    void insertAtBegin(employee data);
+    void insertAtEnd(employee data);
+    void insertAt(int index, employee data); // index from 0 to n; inserts at given index
     void deleteNodeAt(int index);       // delete node at index from 0 to n
-    int elementAtIndex(int index);
-    int elementAtStart();
-    int elementAtEnd();
+    employee elementAtIndex(int index);
+    employee elementAtStart();
+    employee elementAtEnd();
     int sizeOfList(); // returns size of list
     
-    int operator[](int); // these are just for getting an int by value
+    employee operator[](int); // these are just for getting an int by value
     int find(int key);
 };
 
@@ -44,12 +46,12 @@ void NodeList::printList()
     while (temp != NULL)
     {
 
-        cout << temp->data << " "; // printing data
+        temp->data.printDetails(); // printing data
         temp = temp->next; // traversing
     }
 }
 
-void NodeList::insertAtBegin(int data)
+void NodeList::insertAtBegin(employee data)
 {
     // O(1); constant
     size++; // incrementing size
@@ -64,7 +66,7 @@ void NodeList::insertAtBegin(int data)
     this->head = temp; // updating head
 }
 
-void NodeList::insertAtEnd(int data)
+void NodeList::insertAtEnd(employee data)
 {
     // O(1); constant
     size++;          // incrementing size
@@ -82,7 +84,7 @@ void NodeList::insertAtEnd(int data)
     }
 }
 
-void NodeList::insertAt(int index, int data)
+void NodeList::insertAt(int index, employee data)
 {
 
     // O(index); linear
@@ -165,14 +167,15 @@ void NodeList::deleteNodeAt(int index)
     delete toDelete;
 }
 
-int NodeList::elementAtIndex(int index)
+employee NodeList::elementAtIndex(int index)
 {
 
     // O(index); linear
     if (index >= size)
     {
         cout << "\n!!!Index Out Of Range!!!\n";
-        return -1;
+        employee e;
+        return e;
     }
 
     Node *temp = this->head;
@@ -184,7 +187,7 @@ int NodeList::elementAtIndex(int index)
     return temp->data;
 }
 
-int NodeList::elementAtStart()
+employee NodeList::elementAtStart()
 {
 
     // O(1); constant
@@ -192,17 +195,19 @@ int NodeList::elementAtStart()
     { // if list is initialized then
         return head->data;
     }
-    return -1;
+    employee e;
+    return e;
 }
 
-int NodeList::elementAtEnd()
+employee NodeList::elementAtEnd()
 {
     // O(1); constant
     if (tail != NULL)
     { // if list is initialized then
         return tail->data;
     }
-    return -1;
+    employee e;
+    return e;
 }
 
 int NodeList::sizeOfList()
@@ -211,7 +216,7 @@ int NodeList::sizeOfList()
     return this->size;
 }
 
-int NodeList::operator[](int i){
+employee NodeList::operator[](int i){
     return this->elementAtIndex(i);
 }
 
@@ -219,7 +224,7 @@ int NodeList::find(int key){
     Node* temp = this->head; // creating a temporary pointer
     int index = 0; // setting an index counter
     while(temp != NULL){
-        if(temp->data == key){ // checking if key matches to node data
+        if(temp->data.id == key){ // checking if key matches to node data
             return index; // found
         }
         temp = temp->next; // traversing
