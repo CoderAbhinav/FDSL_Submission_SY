@@ -48,22 +48,25 @@ void stack::push(int data){
 }
 
 void stack::pop(){
+    // if head is null then returns
     if(this->head == NULL){
         cout<<"\nWARN : STACK UNDERFLOW";
         return;
     }
-    this->head = this->head->next;
+    // changing head to next node
     // node* toDelete = this->head;
+    this->head = this->head->next;
     // delete toDelete;
     size--;
 }
 
 int stack::top(){
+    // if the list is empty then return -1
     if(this->head == NULL){
         cout<<"\nWARN : STACK UNDERFLOW";
         return -1;
     }
-
+    
     int rev = this->head->data;
     return rev;
 }
