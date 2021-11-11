@@ -9,21 +9,11 @@ int main(){
     st.push(10);
     st.push(20);
     st.push(30);
-    // cout<<st.top()<<'\n';
-    // st.pop();
-    // cout<<st.top()<<'\n';
-    // st.pop();
-    // cout<<st.top()<<'\n';
-    // st.pop();
-    // st.pop();
-    // cout<<st.top()<<'\n';
-    
+       
     printStack(st);
-    st.pop();
     st.push(40);
     printStack(st);
     
-
     return 0;
 }
 
