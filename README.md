@@ -27,3 +27,9 @@
     b. Pop an element
     c. Demonstrate overflow simulations on stack
     d. Display stack
+## [Assignment 6 - Stacks using Linked List](/Assignment_6)
+    Perform implementation of STACK using Linked List
+    a. Push an element on to stack
+    b. Pop an element
+    c. Demonstrate overflow simulations on stack
+    d. Display stack
