@@ -17,7 +17,7 @@ struct Node
 
 
 void employee::printDetails(){
-    cout<<"\nID : "<<id<<" NAME : "<<name<<" SALARY : "<<salary;
+    cout<<"\nID : "<<id<<"\tNAME : "<<name<<"\tSALARY : "<<salary;
 }
 
 employee createEmployee(int id, string name, double salary){
