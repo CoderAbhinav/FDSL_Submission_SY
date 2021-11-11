@@ -54,12 +54,12 @@ void NodeList::printList()
 void NodeList::insertAtBegin(employee data)
 {
     // O(1); constant
-    size++; // incrementing size
     if (this->head == NULL)
     {
         insertAtEnd(data);
         return;
     }
+    size++; // incrementing size
     Node *temp = new Node; // allocating memory
     temp->data = data;
     temp->next = head; // linking old head to the new head
