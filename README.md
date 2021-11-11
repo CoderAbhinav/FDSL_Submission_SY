@@ -21,3 +21,9 @@
     b. deletion 
     c.search 
     d. modify
+## [Assignment 5 - Stacks using array](/Assignment_5)
+    Perform implementation of STACK using array
+    a. Push an element on to stack
+    b. Pop an element
+    c. Demonstrate overflow simulations on stack
+    d. Display stack
