@@ -2,7 +2,7 @@
 #include "arryStack.h"
 using namespace std;
 
-void printStack(Stack);
+void printStack(stack);
 int userSelection();
 
 int main(){
@@ -10,7 +10,7 @@ int main(){
     cout<<"Enter the Maximum size of Stack :\n>>> ";
     cin>>sz;
 
-    Stack st(sz);
+    stack st(sz);
     while (selection)
     {
         selection = userSelection();
@@ -38,7 +38,7 @@ int main(){
     return 0;
 }
 
-void printStack(Stack st){
+void printStack(stack st){
     cout<<"\n";
     while (!st.isEmpty())
     {

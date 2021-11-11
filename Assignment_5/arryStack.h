@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-class Stack{
+class stack{
     private:
     int* stackArray;
     int* topPointer;
@@ -9,7 +9,7 @@ class Stack{
     int elementCount = 0;
     
     public:
-    Stack(int);
+    stack(int);
 
     void push(int);
     void pop();
@@ -19,7 +19,7 @@ class Stack{
     int sizeOfStack();
 };
 
-Stack::Stack(int size){
+stack::stack(int size){
     this->size = size;
     // allocating memory to array
     this->stackArray = new int[size];
@@ -27,7 +27,7 @@ Stack::Stack(int size){
     topPointer = stackArray;
 }
 
-void Stack::push(int data){
+void stack::push(int data){
     // checking if the stack is full
     if(this->elementCount == this->size){
         cout<<"\nWARNING : STACK OVERFLOW";
@@ -45,11 +45,11 @@ void Stack::push(int data){
     return;
 }
 
-int Stack::top(){
+int stack::top(){
     return *(this->topPointer);
 }
 
-void Stack::pop(){
+void stack::pop(){
     // checking if the stack is empty
     if(this->elementCount == 0){
         cout<<"\nWARNING : STACK UNDERFLOW";
@@ -61,16 +61,16 @@ void Stack::pop(){
     return;
 }
 
-bool Stack::isEmpty(){
+bool stack::isEmpty(){
     // checking if stack is empty
     return (this->elementCount == 0);
 }
 
-int Stack::currentSize(){
+int stack::currentSize(){
     // returning the size of stack
     return (this->elementCount);
 }
 
-int Stack::sizeOfStack(){
+int stack::sizeOfStack(){
     return (this->size);
 }
