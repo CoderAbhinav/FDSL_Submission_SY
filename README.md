@@ -33,3 +33,11 @@
     b. Pop an element
     c. Demonstrate overflow simulations on stack
     d. Display stack
+## [Assignment 7.1 - Queue using array](/Assignment_7_1)
+    Perform implementation of QUEUE using array
+    a. Enqueue Operation
+    b. Dequeue Operation
+## [Assignment 7.2 - Queue using linked list](/Assignment_7_2)
+    Perform implementation of QUEUE using Linked List
+    a. Enqueue Operation
+    b. Dequeue Operation
