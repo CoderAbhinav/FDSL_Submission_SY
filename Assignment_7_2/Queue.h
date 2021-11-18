@@ -55,8 +55,8 @@ void Queue<T>::dequeue(){
     if(this->start == this->end){
         this->start = NULL;
         this->end = NULL;
-        this->queueSize--;
-        throw std::invalid_argument("\nQUEUE UNDERFLOW :: The queue is already empty; Try Adding some elements");
+        this->queueSize = 0;
+        throw std::invalid_argument("\nQueue::dequeue() | QUEUE UNDERFLOW :: The queue is empty");
         return;
     }
     Node<T> *toDelete = this->start;
@@ -70,7 +70,7 @@ void Queue<T>::dequeue(){
 template <typename T>
 T Queue<T>::front(){
     if(this->start == NULL){
-        throw std::invalid_argument("\nQUEUE UNDERFLOW :: The queue is already empty; So pointers are null");
+        throw std::invalid_argument("\nQueue::front() | QUEUE UNDERFLOW :: The queue is empty");
     }
     return this->start->data;
 }
@@ -78,7 +78,7 @@ T Queue<T>::front(){
 template <typename T>
 T Queue<T>::back(){
     if(this->end == NULL){
-        throw std::invalid_argument("\nQUEUE UNDERFLOW :: The queue is already empty; So pointers are null");
+        throw std::invalid_argument("\nQueue::back() | QUEUE UNDERFLOW :: The queue is empty");
     }
     return this->end->data;
 }

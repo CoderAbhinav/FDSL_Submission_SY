@@ -40,44 +40,39 @@ Queue<T>::~Queue()
 template <typename T>
 void Queue<T>::enqueue(T data){
     if(this->queueSize == this->maxSize){
-        throw std::invalid_argument("\nQUEUE OVERFLOW :: The queue is full please dequeue and try again");
+        throw std::invalid_argument("\nQueue::enqueue(T data) | QUEUE OVERFLOW :: The queue is full please dequeue and try again");
         return;
     }
 
-    if(this->end == (this->arr + this->maxSize - 1)){
-        this->end = arr;
-    }else if(this->queueSize == 0){
-        // do nothing
-    }else{
-        cout<<"END++";
-        this->end++;
-    }    
-    *(this->end) = data;
+    this->arr[this->queueSize] = data;
     this->queueSize++;
 }
 
 template <typename T>
 void Queue<T>::dequeue(){
     if(queueSize == 0){
-        throw std::invalid_argument("\nQUEUE UNDERFLOW :: The queue is empty");
+        throw std::invalid_argument("\nQueue::dequeue() | QUEUE UNDERFLOW :: The queue is empty");
+    }
+    for(int i = 1; i < this->queueSize; i++){
+        this->arr[i-1] = this->arr[i];
     }
     this->queueSize--;
-    if(this->start == (this->arr + this->maxSize - 1)){
-        this->start = this->arr;
-        return;
-    }
-    cout<<"START++";
-    this->start++;
 }
 
 template <typename T>
 T Queue<T>::front(){
-    return *(this->start);
+    if(queueSize == 0){
+        throw std::invalid_argument("\nQueue::front() | QUEUE UNDERFLOW :: The queue is empty");
+    }
+    return *(this->arr);
 }
 
 template <typename T>
 T Queue<T>::back(){
-    return *(this->end);
+    if(queueSize == 0){
+        throw std::invalid_argument("\nQueue::back() | QUEUE UNDERFLOW :: The queue is empty");
+    }
+    return (this->arr[this->queueSize-1]);
 }
 
 template <typename T>
