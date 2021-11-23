@@ -64,7 +64,6 @@ void Queue<T>::dequeue(){
     this->end->next = this->start;
     delete toDelete;
     this->queueSize--;
-
 }
 
 template <typename T>

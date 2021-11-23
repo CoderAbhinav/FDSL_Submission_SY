@@ -87,7 +87,7 @@ Employee database::getEmployeeByID(int index)
 
 void database::deleteEmployeeEntry(int index)
 {
-    // O(log(n) + n)
+    // O(n)
     if (index == this->elements - 1)
     {
     }
