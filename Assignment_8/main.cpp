@@ -1,31 +1,51 @@
 #include <iostream>
+#include <string>
+#define out(mode) if(mode)
 using namespace std;
 
-void merge(int*, int, int, int);
-void mergeSort(int*, int, int);
+struct Item
+{
+    string itemName;
+    int department;
+    Item(){}
+    Item(int dept, string name){
+        this->itemName = name;
+        this->department = dept;
+    }
+};
+
+bool io = false;
+void merge(Item*, int, int, int);
+void mergeSort(Item*, int, int);
 
 int main(){
-    int n = 10;
-    // cin>>n;
-    int arr[] = {6, 5, 8, 9, 9, 1, 7, 6, 1, 7};
-    // for(int i = 0; i < n; i++){
-    //     cin>>arr[i];
-    // }
-
-    mergeSort(arr, 0, n-1);
-
+    out(io) cout<<"Enter List Size\n>>> ";
+    int n;
+    cin>>n;
+    Item itemArray[n];
     for(int i = 0; i < n; i++){
-        cout<<arr[i]<<" ";
+        string itemName;
+        int deptNo;
+        out(io) cout<<"Enter Details for Item No."<<i<<"\n>>> ";
+        cin>>itemName>>deptNo;
+        itemArray[i] = Item(deptNo, itemName);
+    }
+
+    mergeSort(itemArray, 0, n-1);
+
+    cout<<"\n\nDept.No.\titem\n";
+    for(int i = 0; i < n; i++){
+        cout<<itemArray[i].department<<"\t"<<itemArray[i].itemName<<"\n";
     }
     return 0;
 }
 
-void merge(int* a, int start, int mid, int end){
+void merge(Item* a, int start, int mid, int end){
     /* creating arrays for storing 
     left and right part of mid*/
     int ls = mid - start + 1;
     int rs = end - mid;
-    int la[ls], ra[rs];
+    Item la[ls], ra[rs];
     
     // copying values
     for(int i = 0; i < ls; i++){
@@ -38,7 +58,7 @@ void merge(int* a, int start, int mid, int end){
     // merging the arrays
     int i = 0, j = 0, k = start;
     while(i < ls && j < rs){
-        if(la[i] < ra[j]){
+        if(la[i].department < ra[j].department){
             a[k] = la[i];
             i++;
         }else{
@@ -59,7 +79,7 @@ void merge(int* a, int start, int mid, int end){
     }
 }
 
-void mergeSort(int* a, int start, int end){
+void mergeSort(Item* a, int start, int end){
     if(start < end){
         int mid = start + (end - start)/2;
         mergeSort(a, start, mid);
