@@ -7,6 +7,7 @@ template <typename T> struct Node;
 template <typename T> class LinkedList;
 template <typename T> void printList(LinkedList<T>);
 
+// node defination with template
 template <typename T>
 struct Node
 {
@@ -18,7 +19,7 @@ struct Node
     }   
 };
 
-
+// class defination
 template <typename T>
 class LinkedList
 {
@@ -50,6 +51,7 @@ public:
 template <typename T>
 LinkedList<T>::LinkedList()
 {
+    // O(1)
     this->head = nullptr;
     this->tail = nullptr;
     this->length = 0;
@@ -58,6 +60,8 @@ LinkedList<T>::LinkedList()
 template <typename T>
 LinkedList<T>::~LinkedList()
 {
+    // O(n)
+    // deleting all linked list nodes
     Node<T>* temp = this->head;
     while(temp != nullptr){
         Node<T>* toDelete = temp;
@@ -67,6 +71,7 @@ LinkedList<T>::~LinkedList()
 
 template <typename T>
 void LinkedList<T>::addFirst(T data){
+    // O(1)
     this->length++;
     // checking if the list is empty
     if(this->head == nullptr){
@@ -81,6 +86,7 @@ void LinkedList<T>::addFirst(T data){
 
 template <typename T>
 void LinkedList<T>::addLast(T data){
+    // O(1)
     // checking if the list is empty
     if(this->tail == nullptr){
         this->addFirst(data);
@@ -93,6 +99,7 @@ void LinkedList<T>::addLast(T data){
 
 template <typename T>
 void LinkedList<T>::removeFirst(){
+    // O(1)
     // checking if the list is empty
     if(head == nullptr){
         throw std::invalid_argument("ListEmptyException");
@@ -108,6 +115,7 @@ void LinkedList<T>::removeFirst(){
 
 template <typename T>
 void LinkedList<T>::removeLast(){
+    // O(n)
     // checking if list is empty
     if(this->tail == nullptr){
         throw  std::invalid_argument("ListEmptyException");
@@ -136,6 +144,7 @@ void LinkedList<T>::removeLast(){
 
 template <typename T>
 T LinkedList<T>::first(){
+    // O(1)
     if(this->head == nullptr){
         throw std::invalid_argument("ListEmptyException");
     }
@@ -144,6 +153,7 @@ T LinkedList<T>::first(){
 
 template <typename T>
 T LinkedList<T>::last(){
+    // O(1)
     if(this->head == nullptr){
         throw std::invalid_argument("ListEmptyException");
     }
@@ -162,15 +172,17 @@ int LinkedList<T>::size(){
 
 template <typename T>
 void LinkedList<T>::reverse(){
+    // O(1)
     if(this->head == nullptr){
         throw std::invalid_argument("ListEmptyException");
     }
+    // maintaining three pointers
     Node<T> *temp = this->head;
     Node<T> *prev = NULL;
     Node<T> *nxt;
     this->head = this->tail;
     this->tail = temp;
-
+    // traversing and updating
     while(temp != NULL){
         nxt = temp->next;
         temp->next = prev;
@@ -183,7 +195,7 @@ void LinkedList<T>::reverse(){
 template <typename T>
 void printList(LinkedList<T> l){
     Node<T>* temp = l.head;
-    while (temp != nullptr)
+    while (temp != nullptr) // traversing
     {
         cout<<temp->data<<"->";
         temp = temp->next;
