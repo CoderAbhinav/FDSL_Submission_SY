@@ -2,7 +2,19 @@
 #include "LinkedList.h"
 using namespace std;
 
+void solve();
+
 int main(){
+    int testCases;
+    cin>>testCases;
+    while (testCases--)
+    {
+        solve();
+    }
+    return 0;
+}
+
+void solve(){
     LinkedList<int> l;
     int n, inp;
     string cmd;
@@ -72,5 +84,4 @@ int main(){
         printList(l);
         cout<<"\n";
     }
-    return 0;
 }
