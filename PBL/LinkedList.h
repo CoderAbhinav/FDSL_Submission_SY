@@ -2,14 +2,20 @@
 #include <iostream>
 using namespace std;
 
+// declaration of class and friend function
+template <typename T> struct Node;
+template <typename T> class LinkedList;
+template <typename T> void printList(LinkedList<T>);
+
 template <typename T>
 struct Node
 {
     T data;
-    Node* next = NULL;
+    Node* next;
     Node(T data){
         this->data = data;
-    }
+        this->next = nullptr;
+    }   
 };
 
 
@@ -17,119 +23,147 @@ template <typename T>
 class LinkedList
 {
 private:
-    /* data */
-    Node<T> *head = NULL;
-    Node<T> *tail = NULL;    
-    int length = 0;
+    Node<T>* head;
+    Node<T>* tail;
+    int length;
 public:
     LinkedList();
     ~LinkedList();
+
     void addFirst(T data);
     void addLast(T data);
+    
     void removeFirst();
     void removeLast();
-    T First();
-    T Last();
-    bool isEmpy();
-    int size();
+
+    T first();
+    T last();
+
     void reverse();
-    void print();
+
+    bool isEmpty();
+    int size();
+
+    friend void printList<>(LinkedList);
 };
 
 template <typename T>
 LinkedList<T>::LinkedList()
 {
+    this->head = nullptr;
+    this->tail = nullptr;
+    this->length = 0;
 }
 
 template <typename T>
 LinkedList<T>::~LinkedList()
 {
+    Node<T>* temp = this->head;
+    while(temp != nullptr){
+        Node<T>* toDelete = temp;
+        temp = temp->next;
+    }
 }
 
 template <typename T>
 void LinkedList<T>::addFirst(T data){
     this->length++;
-    if(this->head == NULL){
+    // checking if the list is empty
+    if(this->head == nullptr){
         this->head = new Node<T>(data);
-        this->tail = this->head;
-        return;
-    }
-    else{
-        Node<T> *toAdd = new Node<T>(data);
-        toAdd->next = head;
+        this->tail = this->head; // updating tail
+    }else{
+        Node<T>* toAdd = new Node<T>(data);
+        toAdd->next = this->head;
         this->head = toAdd;
-        return;
     }
 }
 
 template <typename T>
 void LinkedList<T>::addLast(T data){
-    this->length++;
-    if(this->tail == NULL){
-        this->tail = new Node<T>(data);
-        this->head = this->tail;
-        return;
-    }
-    else{
+    // checking if the list is empty
+    if(this->tail == nullptr){
+        this->addFirst(data);
+    }else{
+        this->length++;
         this->tail->next = new Node<T>(data);
-        this->tail = this->tail->next;
-        return;
+        this->tail = this->tail->next; // updating tail
     }
 }
 
 template <typename T>
 void LinkedList<T>::removeFirst(){
-    if(this->length == 0){
-        throw std::invalid_argument("\nListEmptyException::Try adding some more elements\n");
+    // checking if the list is empty
+    if(head == nullptr){
+        throw std::invalid_argument("ListEmptyException");
         return;
     }
+    Node<T>* toDelete = this->head;
+    this->head = this->head->next; // updating head
     this->length--;
-    Node<T> *toDelete = this->head;
-    this->head = this->head->next;
     delete toDelete;
-    return;
+    // checking if head pointer is null and updating tail
+    if(this->head == nullptr) this->tail = nullptr;
 }
 
 template <typename T>
 void LinkedList<T>::removeLast(){
-    if(this->length == 0){
-        throw std::invalid_argument("\nListEmptyException::Try adding some more elements\n");
+    // checking if list is empty
+    if(this->tail == nullptr){
+        throw  std::invalid_argument("ListEmptyException");
         return;
-    }else if(this->length == 1){
-        this->length = 0;
-        this->head = NULL;
-        this->tail = NULL;
-        return;
-    }else{
-        this->length--;
-        Node<T> *toDelete = this->tail;
-        Node<T> *temp = this->head;
-        while (temp->next->next != NULL)    
-        {
-            temp = temp->next;
-        }
-        temp->next = NULL;
-        this->tail = temp;
-        delete toDelete;     
-        return;           
     }
+    
+    this->length--;
+    Node<T>* toDelete = this->tail;
+    // checking if there is only one node
+    if(this->tail == this->head){
+        this->head = nullptr;
+        this->tail = nullptr;
+        delete toDelete;
+        return;    
+    }
+    
+    // traversing to one node before tail node
+    Node<T>* temp = this->head;
+    while(temp->next->next != nullptr){
+        temp = temp->next;
+    }
+    this->tail = temp; // upating tail
+    this->tail->next = nullptr;
+    delete toDelete;
 }
 
 template <typename T>
-bool LinkedList<T>::isEmpy(){
+T LinkedList<T>::first(){
+    if(this->head == nullptr){
+        throw std::invalid_argument("ListEmptyException");
+    }
+    return this->head->data;
+}
+
+template <typename T>
+T LinkedList<T>::last(){
+    if(this->head == nullptr){
+        throw std::invalid_argument("ListEmptyException");
+    }
+    return this->tail->data;
+}
+
+template <typename T>
+bool LinkedList<T>::isEmpty(){
     return (this->length == 0);
 }
 
-
 template <typename T>
 int LinkedList<T>::size(){
-    return this->length;
+    return (this->length);
 }
 
 template <typename T>
 void LinkedList<T>::reverse(){
-    if(this->length == 0){
-        throw std::invalid_argument("\nListEmptyException::Try adding some more elements\n");
+    if(this->head == nullptr){
+        throw std::invalid_argument("ListEmptyException");
     }
     Node<T> *temp = this->head;
     Node<T> *prev = NULL;
@@ -143,34 +177,17 @@ void LinkedList<T>::reverse(){
         prev = temp;
         temp = nxt;
     }
-
 }
 
+
 template <typename T>
-void LinkedList<T>::print(){
-    Node<T> *temp = this->head;
-    cout<<"\n";
-    while (temp != NULL)
+void printList(LinkedList<T> l){
+    Node<T>* temp = l.head;
+    while (temp != nullptr)
     {
-        cout<<temp->data<<" "<<" -> ";
+        cout<<temp->data<<"->";
         temp = temp->next;
     }
-    cout<<"NULL\n";
+    cout<<"null";
     
-}
-
-template <typename T>
-T LinkedList<T>::First(){
-    if(this->length == 0){
-        throw std::invalid_argument("\nListEmptyException::Try adding some more elements\n");
-    }
-    return (this->head->data);
-}
-
-template <typename T>
-T LinkedList<T>::Last(){
-    if(this->length == 0){
-        throw std::invalid_argument("\nListEmptyException::Try adding some more elements\n");
-    }
-    return (this->tail->data);
 }
