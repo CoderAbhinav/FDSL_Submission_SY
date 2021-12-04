@@ -1,7 +1,6 @@
 ## PBL Problem statement
     You are supposed to implement a singly linked list with the following operations: I - check for empty condition AF O - adds first element o AL O - adds last element o RF - removes the first element RL - removes the last element L - returns the last element in the list F - returns the first element in the list REV - reverses the linked list
 
-
 ## Sample Input
     1
     15
