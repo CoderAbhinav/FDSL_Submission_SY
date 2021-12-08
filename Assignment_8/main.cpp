@@ -3,6 +3,7 @@
 #define out(mode) if(mode)
 using namespace std;
 
+
 struct Item
 {
     string itemName;
@@ -14,7 +15,7 @@ struct Item
     }
 };
 
-bool io = false;
+bool io = true;
 void merge(Item*, int, int, int);
 void mergeSort(Item*, int, int);
 

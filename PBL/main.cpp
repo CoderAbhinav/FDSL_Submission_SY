@@ -1,5 +1,5 @@
 #include <iostream>
-#include "LinkedList.h"
+#include "LinkedListINT.h"
 using namespace std;
 
 void solve();
@@ -9,13 +9,14 @@ int main(){
     cin>>testCases;
     while (testCases--)
     {
+        // cout<<"Hello\n";
         solve();
     }
     return 0;
 }
 
 void solve(){
-    LinkedList<int> l;
+    LinkedList l;
     int n, inp;
     string cmd;
     cin>>n;
