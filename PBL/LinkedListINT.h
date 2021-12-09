@@ -2,10 +2,7 @@
 #include <iostream>
 using namespace std;
 
-// declaration of class and friend function
-struct Node;
-class LinkedList;
-void printList(LinkedList);
+
 
 // node defination with template
 
@@ -30,21 +27,20 @@ private:
 public:
     LinkedList();
     ~LinkedList();
-
+    // insert
     void addFirst(int data);
     void addLast(int data);
-    
+    // delete
     void removeFirst();
     void removeLast();
-
+    // access
     int first();
     int last();
-
-    void reverse();
-
+    // stats
     bool isEmpty();
     int size();
-
+    // non-native
+    friend void reverse(LinkedList);
     friend void printList(LinkedList);
 };
 
@@ -170,17 +166,21 @@ int LinkedList::size(){
 }
 
 
-void LinkedList::reverse(){
-    // O(1)
-    if(this->head == nullptr){
+void reverse(LinkedList list){
+
+    // underflow condition check
+    if(list.head == nullptr){
         throw std::invalid_argument("ListEmptyException");
     }
     // maintaining three pointers
-    Node *temp = this->head;
+    Node *temp = list.head;
     Node *prev = NULL;
     Node *nxt;
-    this->head = this->tail;
-    this->tail = temp;
+
+    // swapping head & tail
+    list.head = list.tail;
+    list.tail = temp;
+
     // traversing and updating
     while(temp != NULL){
         nxt = temp->next;
@@ -192,8 +192,8 @@ void LinkedList::reverse(){
 
 
 
-void printList(LinkedList l){
-    Node* temp = l.head;
+void printList(LinkedList list){
+    Node* temp = list.head;
     while (temp != nullptr) // traversing
     {
         cout<<temp->data<<"->";

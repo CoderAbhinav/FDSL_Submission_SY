@@ -17,20 +17,24 @@ int main(){
 
 void solve(){
     LinkedList l;
-    int n, inp;
+    int n, inp; 
     string cmd;
     cin>>n;
     while(n--){
-        cin>>cmd;
+        cin>>cmd; // taking operation command
         if(cmd == "I"){
             cout<<((l.isEmpty())? "true":"false")<<"\n";
             continue;
         }else if(cmd == "AF"){
-            cin>>inp;
+
+            cin>>inp; // taking data
             l.addFirst(inp);
+
         }else if(cmd == "AL"){
-            cin>>inp;
+
+            cin>>inp; // taking data
             l.addLast(inp);
+            
         }else if(cmd == "RF"){
             try
             {
@@ -58,7 +62,7 @@ void solve(){
             {
                 cout << e.what() << '\n';
             }
-            continue;
+            continue; // skip remaining
             
         }else if(cmd == "L"){
             try
@@ -69,12 +73,12 @@ void solve(){
             {
                 cout << e.what() << '\n';
             }
-            continue;
+            continue; // skip remaining
             
         }else if(cmd == "REV"){
             try
             {
-                l.reverse();
+                reverse(l);
             }
             catch(const std::exception& e)
             {
