@@ -2,22 +2,19 @@
 #include <iostream>
 using namespace std;
 
-
-
-// node defination with template
-
+// node defination
 struct Node
 {
     int data;
     Node* next;
+    // constructor
     Node(int data){
         this->data = data;
         this->next = nullptr;
     }   
 };
 
-// class defination
-
+// class declaration
 class LinkedList
 {
 private:
@@ -27,18 +24,23 @@ private:
 public:
     LinkedList();
     ~LinkedList();
+
     // insert
     void addFirst(int data);
     void addLast(int data);
+
     // delete
     void removeFirst();
     void removeLast();
+
     // access
     int first();
     int last();
+
     // stats
     bool isEmpty();
     int size();
+
     // non-native
     friend void reverse(LinkedList);
     friend void printList(LinkedList);
@@ -48,6 +50,7 @@ public:
 LinkedList::LinkedList()
 {
     // O(1)
+    // creating underflow
     this->head = nullptr;
     this->tail = nullptr;
     this->length = 0;
@@ -69,21 +72,21 @@ LinkedList::~LinkedList()
 void LinkedList::addFirst(int data){
     // O(1)
     this->length++;
-    // checking if the list is empty
+    // checking for underflow
     if(this->head == nullptr){
         this->head = new Node(data);
         this->tail = this->head; // updating tail
     }else{
         Node* toAdd = new Node(data);
         toAdd->next = this->head;
-        this->head = toAdd;
+        this->head = toAdd; // updating head
     }
 }
 
 
 void LinkedList::addLast(int data){
     // O(1)
-    // checking if the list is empty
+    // checking for underflow
     if(this->tail == nullptr){
         this->addFirst(data);
     }else{
@@ -106,13 +109,13 @@ void LinkedList::removeFirst(){
     this->length--;
     delete toDelete;
     // checking if head pointer is null and updating tail
-    if(this->head == nullptr) this->tail = nullptr;
+    if(this->head == nullptr) this->tail = nullptr; // edge case
 }
 
 
 void LinkedList::removeLast(){
     // O(n)
-    // checking if list is empty
+    // checking for undeflow
     if(this->tail == nullptr){
         throw  std::invalid_argument("ListEmptyException");
         return;
@@ -167,7 +170,7 @@ int LinkedList::size(){
 
 
 void reverse(LinkedList list){
-
+    // O(n)
     // underflow condition check
     if(list.head == nullptr){
         throw std::invalid_argument("ListEmptyException");
@@ -193,6 +196,7 @@ void reverse(LinkedList list){
 
 
 void printList(LinkedList list){
+    // O(n)
     Node* temp = list.head;
     while (temp != nullptr) // traversing
     {

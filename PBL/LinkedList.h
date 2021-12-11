@@ -6,6 +6,7 @@ using namespace std;
 template <typename T> struct Node;
 template <typename T> class LinkedList;
 template <typename T> void printList(LinkedList<T>);
+template <typename T> void reverse(LinkedList<T>);
 
 // node defination with template
 template <typename T>
@@ -40,11 +41,11 @@ public:
     T first();
     T last();
 
-    void reverse();
 
     bool isEmpty();
     int size();
 
+    friend void reverse<>(LinkedList);
     friend void printList<>(LinkedList);
 };
 
@@ -171,17 +172,18 @@ int LinkedList<T>::size(){
 }
 
 template <typename T>
-void LinkedList<T>::reverse(){
+void reverse(LinkedList<T> list){
     // O(1)
-    if(this->head == nullptr){
+    if(list.head == nullptr){
         throw std::invalid_argument("ListEmptyException");
     }
     // maintaining three pointers
-    Node<T> *temp = this->head;
+    Node<T> *temp = list.head;
     Node<T> *prev = NULL;
     Node<T> *nxt;
-    this->head = this->tail;
-    this->tail = temp;
+    // swapping head and tail
+    list.head = list.tail;
+    list.tail = temp;
     // traversing and updating
     while(temp != NULL){
         nxt = temp->next;
@@ -193,13 +195,12 @@ void LinkedList<T>::reverse(){
 
 
 template <typename T>
-void printList(LinkedList<T> l){
-    Node<T>* temp = l.head;
+void printList(LinkedList<T> list){
+    Node<T>* temp = list.head;
     while (temp != nullptr) // traversing
     {
         cout<<temp->data<<"->";
         temp = temp->next;
     }
     cout<<"null";
-    
 }
