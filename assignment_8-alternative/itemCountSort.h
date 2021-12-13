@@ -41,8 +41,8 @@ void drivingCode(){
 	item* arr = new item[n];
 	for(int i = 0; i < n; i++){
 		int dept; string name;
-		cin>>dept;
 		cin>>name;
+		cin>>dept;
 		arr[i] = item(dept, name);
 	}
 	countSort(arr, n, departmentCount);

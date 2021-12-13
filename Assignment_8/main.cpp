@@ -15,7 +15,7 @@ struct Item
     }
 };
 
-bool io = true;
+bool io = false;
 void merge(Item*, int, int, int);
 void mergeSort(Item*, int, int);
 

@@ -59,6 +59,6 @@ int main(int argc, char const *argv[])
 	for(int i = 0; i < n; i++) cin>>arr[i];
 	mergeSort(arr, 0, n-1, n);
 	cout<<"FINAL : \n";
-	for(int i = 0; i < n; i++) cout<<arr[i]<<" ";
+	for(int i = 0; i < n; i++){ cout<<arr[i]<<"\t"; if(i%5 == 0) cout<<endl;}
 	return 0;
 }

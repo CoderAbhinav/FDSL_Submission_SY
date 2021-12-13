@@ -24,5 +24,5 @@ void drivingCode(){
 	int arr[n];
 	for(int i = 0; i < n; i++) cin>>arr[i];
 	countSort(arr, n, departmentCount);
-	for(int i = 0; i < n; i++) cout<<arr[i]<<" ";
+	for(int i = 0; i < n; i++){ cout<<arr[i]<<"\t"; if(i%5 == 0) cout<<endl; }
 }
